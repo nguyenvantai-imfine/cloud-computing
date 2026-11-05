@@ -53,7 +53,8 @@ services:
     restart: unless-stopped
 
   object-storage-server:
-    image: minio/minio
+    build: ./object-storage-server
+    image: myminicloud-minio:2025-10-15
     container_name: object-storage-server
     command: ["server", "/data", "--console-address", ":9001"]
     environment:
