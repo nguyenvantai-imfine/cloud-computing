@@ -15,6 +15,14 @@ services:
     ports: ["8080:80"]
     restart: unless-stopped
 
+  web-nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:1.5.1
+    command:
+      - --nginx.scrape-uri=http://web-frontend-server:8081/stub_status
+    networks: [cloud-net]
+    restart: unless-stopped
+
+
   application-backend-server:
     build: ./application-backend-server
     image: nguyenvantai1702/myminicloud-app:dev
