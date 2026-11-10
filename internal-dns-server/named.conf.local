@@ -1,8 +1,4 @@
-options {
-    directory "/var/cache/bind"; 
-    allow-query { any; }; 
-    recursion yes; 
-    };
-zone "cloud.local" IN { 
-    type master; file "/etc/bind/db.cloud.local";
-    };
+zone "cloud.local" IN {
+    type master;
+    file "/etc/bind/db.cloud.local";
+};
