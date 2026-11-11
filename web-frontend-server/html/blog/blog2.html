@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="vi" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xây Dựng Hạ Tầng MiniCloud Với Docker, Nginx & Bind9 DNS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased">
+
+  <!-- TOP NAVBAR -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <a href="/" class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xs">MC</div>
+        <span class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">Mini<span class="text-cyan-600 dark:text-cyan-400">Cloud</span></span>
+        <span class="hidden sm:inline-flex px-2 py-0.5 rounded-full text-[11px] font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">● __SERVER_ID__</span>
+      </a>
+      <div class="flex items-center gap-3">
+        <a href="/blog/" class="px-3.5 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700">← Danh sách Blog</a>
+        <a href="/" class="px-3.5 py-1.5 text-xs font-semibold text-slate-950 bg-cyan-400 hover:bg-cyan-300 rounded-lg">Trang chính</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ARTICLE READER VIEW -->
+  <main class="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div class="flex items-center justify-between">
+      <a href="/blog/" class="inline-flex items-center gap-2 text-xs font-semibold text-cyan-600 dark:text-cyan-400 hover:underline">
+        ← Quay lại danh sách blog (/blog/)
+      </a>
+      <button onclick="const s=document.getElementById('like-count'); s.textContent=Number(s.textContent)+1;" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-rose-500/40 bg-rose-500/10 text-rose-400 text-xs font-semibold">
+        ♥ <span id="like-count" class="font-mono">126</span>
+      </button>
+    </div>
+
+    <div class="space-y-4">
+      <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-medium">
+        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">Cloud Architecture</span>
+        <span>·</span>
+        <span>9 phút đọc</span>
+        <span>·</span>
+        <span>Ngày đăng: 2026-10-18</span>
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
+        Xây Dựng Hạ Tầng MiniCloud: Tối Ưu Hóa Với Docker, Nginx Load Balancing &amp; Bind9 DNS
+      </h1>
+
+      <div class="flex items-center gap-3 py-3 border-y border-slate-200 dark:border-slate-800">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xs">MC</div>
+        <div>
+          <div class="text-sm font-semibold text-slate-900 dark:text-white">Nhóm Phát Triển MiniCloud</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400">Cloud Computing &amp; Microservices Architecture</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cover Image -->
+    <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md">
+      <img src="/assets/images/minucloud_hero_network_1794421019529.jpg" alt="MiniCloud Network Architecture" class="w-full h-72 sm:h-96 object-cover" />
+    </div>
+
+    <!-- Article Body -->
+    <div class="space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white pt-2">1. Kiến trúc hệ thống MiniCloud 9 Server</h3>
+      <p>
+        Việc triển khai một hạ tầng đám mây thu nhỏ gồm đầy đủ 9 thành phần (Web Server, Application Server, Database MariaDB, Keycloak Auth, MinIO Object Storage, Bind9 Internal DNS, Prometheus, Grafana và Nginx Reverse Proxy) giúp mô phỏng toàn diện cách vận hành của các nền tảng đám mây thực tế như AWS hay GCP.
+      </p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white pt-4">2. Triển khai Cân Bằng Tải Round Robin &amp; DNS Nội Bộ</h3>
+      <p>
+        Trong hệ thống <strong>MiniCloud</strong>, lưu lượng truy cập vào cổng 80 được Nginx phân phối luân phiên (Round Robin) giữa hai máy chủ <code>web-frontend-server1</code> và <code>web-frontend-server2</code>:
+      </p>
+
+      <div class="rounded-xl overflow-hidden bg-slate-950 border border-slate-800 font-mono text-xs my-4">
+        <div class="px-4 py-2 border-b border-slate-800 bg-slate-900/60 text-slate-400 text-[11px]">nginx.conf &amp; db.cloud.local</div>
+        <pre class="p-4 text-emerald-400 overflow-x-auto leading-relaxed">upstream web_backend {
+  server web-frontend-server1:80;
+  server web-frontend-server2:80;
+}
+
+# Zone db.cloud.local trên Bind9 DNS Server:
+web-frontend-server IN A 10.10.10.10
+app-backend         IN A 10.10.10.20
+minio               IN A 10.10.10.30
+keycloak            IN A 10.10.10.40</pre>
+      </div>
+
+      <p>
+        Nhờ kết hợp networking, DNS nội bộ và containerization, toàn bộ hệ thống dễ dàng đóng gói qua <code>docker-compose.yml</code> và triển khai đồng nhất trên AWS EC2!
+      </p>
+    </div>
+
+    <!-- Tags -->
+    <div class="pt-4 flex flex-wrap items-center gap-2">
+      <span class="text-xs text-slate-400 font-medium">Chủ đề:</span>
+      <span class="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md">#Docker</span>
+      <span class="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md">#DevOps</span>
+      <span class="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md">#Load_Balancing</span>
+      <span class="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md">#Bind9_DNS</span>
+    </div>
+
+    <!-- Navigation Footer -->
+    <div class="pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs font-semibold">
+      <a href="/blog/blog1.html" class="text-cyan-400 hover:underline">← Bài 1: Thiết kế API Sinh viên</a>
+      <a href="/blog/blog3.html" class="text-cyan-400 hover:underline">Đọc tiếp Bài 3: Kinh nghiệm học CNTT →</a>
+    </div>
+  </main>
+</body>
+</html>

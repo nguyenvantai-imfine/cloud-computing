@@ -33,6 +33,7 @@ def secure():
     except Exception as e:
         return jsonify(error=str(e)), 401
 
+@app.get("/student")
 @app.get("/api/student")
 def student():     
     if not os.path.exists("students.json"):

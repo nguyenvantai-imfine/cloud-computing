@@ -11,8 +11,24 @@ services:
     build: ./web-frontend-server
     image: nguyenvantai1702/myminicloud-web:dev
     container_name: web-frontend-server
-    networks: [cloud-net]
+    hostname: web-frontend-server1
+    networks:
+      cloud-net:
+        aliases:
+          - web-frontend-server1
     ports: ["8080:80"]
+    restart: unless-stopped
+
+  web-frontend-server2:
+    build: ./web-frontend-server
+    image: nguyenvantai1702/myminicloud-web:dev
+    container_name: web-frontend-server2
+    hostname: web-frontend-server2
+    networks:
+      cloud-net:
+        aliases:
+          - web-frontend-server2
+    ports: ["8082:80"]
     restart: unless-stopped
 
   web-nginx-exporter:
@@ -116,6 +132,7 @@ services:
     container_name: api-gateway-proxy-server
     depends_on:
       - web-frontend-server
+      - web-frontend-server2
       - application-backend-server
       - authentication-identity-server
     ports: ["80:80"]

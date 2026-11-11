@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="vi" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kiến Trúc & Thiết Kế API Sinh Viên Chuẩn RESTful Trên MiniCloud</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased">
+
+  <!-- TOP NAVBAR -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <a href="/" class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xs">MC</div>
+        <span class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">Mini<span class="text-cyan-600 dark:text-cyan-400">Cloud</span></span>
+        <span class="hidden sm:inline-flex px-2 py-0.5 rounded-full text-[11px] font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">● __SERVER_ID__</span>
+      </a>
+      <div class="flex items-center gap-3">
+        <a href="/blog/" class="px-3.5 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700">← Danh sách Blog</a>
+        <a href="/" class="px-3.5 py-1.5 text-xs font-semibold text-slate-950 bg-cyan-400 hover:bg-cyan-300 rounded-lg">Trang chính</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ARTICLE READER VIEW -->
+  <main class="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div class="flex items-center justify-between">
+      <a href="/blog/" class="inline-flex items-center gap-2 text-xs font-semibold text-cyan-600 dark:text-cyan-400 hover:underline">
+        ← Quay lại danh sách blog (/blog/)
+      </a>
+      <div class="flex items-center gap-2">
+        <button onclick="const s=document.getElementById('like-count'); s.textContent=Number(s.textContent)+1;" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-rose-500/40 bg-rose-500/10 text-rose-400 text-xs font-semibold">
+          ♥ <span id="like-count" class="font-mono">84</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-medium">
+        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">API Design</span>
+        <span>·</span>
+        <span>6 phút đọc</span>
+        <span>·</span>
+        <span>Ngày đăng: 2026-10-24</span>
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
+        Kiến Trúc &amp; Thiết Kế API Sinh Viên Chuẩn RESTful Trên MiniCloud
+      </h1>
+
+      <div class="flex items-center gap-3 py-3 border-y border-slate-200 dark:border-slate-800">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xs">MC</div>
+        <div>
+          <div class="text-sm font-semibold text-slate-900 dark:text-white">Nhóm Phát Triển MiniCloud</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400">Cloud Computing &amp; Microservices Architecture</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cover Image -->
+    <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md">
+      <img src="/assets/images/blog_student_api_cover_1794421033024.jpg" alt="Kiến trúc API Sinh viên" class="w-full h-72 sm:h-96 object-cover" />
+    </div>
+
+    <!-- Article Body -->
+    <div class="space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white pt-2">1. Giới thiệu bài toán</h3>
+      <p>
+        Trong các đề tài đồ án Điện toán đám mây và hệ thống quản trị trường đại học, <strong>Student Management Service</strong> luôn là dịch vụ lõi. Khi xây dựng <strong>MiniCloud</strong>, mục tiêu của nhóm là thiết kế một API kết nối giữa <code>api-gateway-proxy-server</code> (Nginx) và <code>application-backend-server</code> (Flask) đảm bảo:
+      </p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Độ trễ cực thấp (&lt; 30ms) trong mạng nội bộ <code>cloud-net</code>.</li>
+        <li>Định tuyến linh hoạt qua cả <code>/api/student</code> và <code>/student/</code> trên Nginx Reverse Proxy.</li>
+        <li>Bảo mật xác thực OIDC Bearer Token tích hợp với máy chủ định danh <strong>Keycloak</strong> tại endpoint <code>/secure</code>.</li>
+      </ul>
+
+      <div class="rounded-xl overflow-hidden bg-slate-950 border border-slate-800 font-mono text-xs my-4">
+        <div class="px-4 py-2 border-b border-slate-800 bg-slate-900/60 text-slate-400 text-[11px]">json · Mẫu response chuẩn trên MiniCloud Student API</div>
+        <pre class="p-4 text-emerald-400 overflow-x-auto leading-relaxed">{
+  "status": "success",
+  "data": {
+    "id": 1,
+    "mssv": "SV001",
+    "name": "Nguyễn Văn A",
+    "gpa": 3.60,
+    "major": "Công nghệ thông tin"
+  },
+  "meta": {
+    "servedBy": "__SERVER_ID__",
+    "responseTimeMs": 14
+  }
+}</pre>
+      </div>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white pt-4">2. Cấu hình Route /student/ trên Nginx API Gateway</h3>
+      <p>
+        Để người dùng bên ngoài có thể truy cập trực tiếp danh sách sinh viên qua địa chỉ <code>http://localhost/student/</code>, chúng ta cấu hình thêm location block trong <code>nginx.conf</code> của <code>api-gateway-proxy-server</code>:
+      </p>
+      <div class="rounded-xl overflow-hidden bg-slate-950 border border-slate-800 font-mono text-xs my-4">
+        <div class="px-4 py-2 border-b border-slate-800 bg-slate-900/60 text-slate-400 text-[11px]">nginx.conf</div>
+        <pre class="p-4 text-cyan-400 overflow-x-auto leading-relaxed">location /student/ {
+  proxy_pass http://application-backend-server:8081/student;
+  proxy_set_header Host $host;
+  proxy_set_header X-Real-IP $remote_addr;
+}</pre>
+      </div>
+
+      <p>
+        Hy vọng bài viết này giúp các bạn sinh viên có góc nhìn chuẩn mực hơn khi thiết kế Microservices và API Gateway cho đồ án môn học!
+      </p>
+    </div>
+
+    <!-- Tags -->
+    <div class="pt-4 flex flex-wrap items-center gap-2">
+      <span class="text-xs text-slate-400 font-medium">Chủ đề:</span>
+      <span class="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md">#REST_API</span>
+      <span class="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md">#Backend_Architecture</span>
+      <span class="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md">#Sinh_Vien</span>
+      <span class="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md">#Nginx_Proxy</span>
+    </div>
+
+    <!-- Navigation Footer -->
+    <div class="pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs font-semibold">
+      <a href="/" class="text-cyan-400 hover:underline">← Quay lại Trang chính (/)</a>
+      <a href="/blog/blog2.html" class="text-cyan-400 hover:underline">Đọc tiếp Bài 2: Hạ tầng Docker &amp; Proxy →</a>
+    </div>
+  </main>
+</body>
+</html>

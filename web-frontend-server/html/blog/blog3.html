@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="vi" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kinh Nghiệm Học Ngành CNTT, Làm Đồ Án Thực Chiến & Duy Trì GPA > 3.8</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased">
+
+  <!-- TOP NAVBAR -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <a href="/" class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xs">MC</div>
+        <span class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">Mini<span class="text-cyan-600 dark:text-cyan-400">Cloud</span></span>
+        <span class="hidden sm:inline-flex px-2 py-0.5 rounded-full text-[11px] font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">● __SERVER_ID__</span>
+      </a>
+      <div class="flex items-center gap-3">
+        <a href="/blog/" class="px-3.5 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700">← Danh sách Blog</a>
+        <a href="/" class="px-3.5 py-1.5 text-xs font-semibold text-slate-950 bg-cyan-400 hover:bg-cyan-300 rounded-lg">Trang chính</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ARTICLE READER VIEW -->
+  <main class="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div class="flex items-center justify-between">
+      <a href="/blog/" class="inline-flex items-center gap-2 text-xs font-semibold text-cyan-600 dark:text-cyan-400 hover:underline">
+        ← Quay lại danh sách blog (/blog/)
+      </a>
+      <button onclick="const s=document.getElementById('like-count'); s.textContent=Number(s.textContent)+1;" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-rose-500/40 bg-rose-500/10 text-rose-400 text-xs font-semibold">
+        ♥ <span id="like-count" class="font-mono">95</span>
+      </button>
+    </div>
+
+    <div class="space-y-4">
+      <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-medium">
+        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">Học tập &amp; Đồ án</span>
+        <span>·</span>
+        <span>5 phút đọc</span>
+        <span>·</span>
+        <span>Ngày đăng: 2026-09-29</span>
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
+        Kinh Nghiệm Học Ngành CNTT, Làm Đồ Án Thực Chiến &amp; Duy Trì GPA &gt; 3.8
+      </h1>
+
+      <div class="flex items-center gap-3 py-3 border-y border-slate-200 dark:border-slate-800">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xs">MC</div>
+        <div>
+          <div class="text-sm font-semibold text-slate-900 dark:text-white">Nhóm Phát Triển MiniCloud</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400">Cloud Computing &amp; Microservices Architecture</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cover Image -->
+    <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md">
+      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=80" alt="Kinh nghiệm học CNTT" class="w-full h-72 sm:h-96 object-cover" />
+    </div>
+
+    <!-- Article Body -->
+    <div class="space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white pt-2">1. Cân bằng giữa điểm số trên trường và kiến thức thực tế</h3>
+      <p>
+        Nhiều bạn sinh viên thường tự hỏi: <em>"GPA trên trường đại học có quan trọng không?"</em> Câu trả lời là: <strong>Có, nhưng cần đi đôi với kỹ năng thực hành.</strong>
+      </p>
+      <ul class="list-disc pl-6 space-y-2">
+        <li>GPA cao là tấm vé thông hành giúp dễ dàng xin học bổng, du học hoặc ghi điểm trong mắt các tập đoàn công nghệ lớn ở vòng lọc hồ sơ.</li>
+        <li>Tuy nhiên, khả năng giải quyết vấn đề thực tế, viết code sạch (Clean Code), làm việc nhóm và hiểu sâu về kiến trúc hệ thống mới là điều giúp phát triển bền vững.</li>
+      </ul>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white pt-4">2. Ba nguyên tắc học tập &amp; làm đồ án nhóm hiệu quả</h3>
+      <ol class="list-decimal pl-6 space-y-2">
+        <li><strong>Biến bài tập lớn thành sản phẩm hoàn chỉnh:</strong> Thay vì chỉ làm báo cáo lý thuyết, hãy đóng gói nó thành ứng dụng web và hệ thống Microservices thực tế như dự án <strong>MiniCloud</strong>.</li>
+        <li><strong>Học bản chất, không học vẹt cú pháp:</strong> Hiểu cơ chế hoạt động của RAM, Disk I/O, Networking, DNS, Reverse Proxy và Containerization trước khi nhảy vào dùng framework.</li>
+        <li><strong>Phân chia vai trò rõ ràng trong nhóm:</strong> Tách bạch các mảng Hạ tầng &amp; Cổng vào (Web/Proxy/DNS), Ứng dụng &amp; Dữ liệu (App/DB/Auth) và Lưu trữ &amp; Giám sát (MinIO/Prometheus/Grafana) để phối hợp nhịp nhàng qua Git.</li>
+      </ol>
+    </div>
+
+    <!-- Tags -->
+    <div class="pt-4 flex flex-wrap items-center gap-2">
+      <span class="text-xs text-slate-400 font-medium">Chủ đề:</span>
+      <span class="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md">#Sinh_Vien</span>
+      <span class="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md">#Kinh_Nghiem</span>
+      <span class="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md">#Hoc_Tap</span>
+      <span class="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md">#Teamwork</span>
+    </div>
+
+    <!-- Navigation Footer -->
+    <div class="pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs font-semibold">
+      <a href="/blog/blog2.html" class="text-cyan-400 hover:underline">← Bài 2: Hạ tầng Docker &amp; Proxy</a>
+      <a href="/blog/" class="text-cyan-400 hover:underline">Quay về Danh mục Blog (/blog/) →</a>
+    </div>
+  </main>
+</body>
+</html>
