@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 import time, requests, os
 from jose import jwt
+import pymysql
 import json
 
 ISSUER   = os.getenv("OIDC_ISSUER",   "http://authentication-identity-server:8080/realms/master")
@@ -42,6 +43,26 @@ def student():
     with open("students.json", "r", encoding="utf-8") as f:
         data = json.load(f)
     return jsonify(data)
+
+@app.get("/students-db")
+def students_db():
+    conn = pymysql.connect(
+        host=os.getenv("DB_HOST", "relational-database-server"),
+        user=os.getenv("DB_USER", "root"),
+        password=os.getenv("DB_PASSWORD", "root"),
+        database="studentdb",
+        charset="utf8mb4",
+        cursorclass=pymysql.cursors.DictCursor,
+    )
+    try:
+        with conn.cursor() as cur:
+            cur.execute("SELECT id, student_id, fullname, dob, major FROM students")
+            rows = cur.fetchall()
+        for r in rows:
+            r["dob"] = str(r["dob"])
+        return jsonify(rows)
+    finally:
+        conn.close()
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8081)

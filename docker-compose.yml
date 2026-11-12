@@ -38,7 +38,6 @@ services:
     networks: [cloud-net]
     restart: unless-stopped
 
-
   application-backend-server:
     build: ./application-backend-server
     image: nguyenvantai1702/myminicloud-app:dev
@@ -46,8 +45,9 @@ services:
     networks: [cloud-net]
     ports: ["8085:8081"]
     environment:
-      OIDC_ISSUER: "http://authentication-identity-server:8080/realms/master"
-      OIDC_AUDIENCE: "myapp"
+      OIDC_ISSUER: "http://localhost:8081/realms/realm_sv001"
+      OIDC_JWKS_URL: "http://authentication-identity-server:8080/realms/realm_sv001/protocol/openid-connect/certs"
+      OIDC_AUDIENCE: "account"
     restart: unless-stopped
 
   relational-database-server:
