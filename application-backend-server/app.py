@@ -3,6 +3,7 @@ import time, requests, os
 from jose import jwt
 import pymysql
 import json
+import dns.resolver
 
 ISSUER   = os.getenv("OIDC_ISSUER", "http://localhost/auth/realms/realm_sv001")
 AUDIENCE = os.getenv("OIDC_AUDIENCE", "account")
@@ -13,11 +14,27 @@ def get_jwks():
     global _JWKS, _TS
     now = time.time()
     if not _JWKS or now - _TS > 600:
-        _JWKS = requests.get(JWKS_URL, timeout=5).json()
+        response = requests.get(JWKS_URL, timeout=5)
+        response.raise_for_status()
+        _JWKS = response.json()
         _TS = now
     return _JWKS
 
 app = Flask(__name__)
+
+@app.get("/dns")
+def dns_records():
+    resolver = dns.resolver.Resolver(configure=False)
+    resolver.nameservers = ["10.10.10.53"]
+    resolver.lifetime = 3
+    records = []
+    for name in ["web-frontend-server", "app-backend", "minio", "keycloak"]:
+        fqdn = name + ".cloud.local"
+        try:
+            records.append({"name": fqdn, "addresses": [str(a) for a in resolver.resolve(fqdn, "A")]})
+        except dns.exception.DNSException:
+            return jsonify(error="DNS query failed", name=fqdn), 503
+    return jsonify(records)
 
 @app.get("/hello")
 def hello(): return jsonify(message="Hello from App Server!")

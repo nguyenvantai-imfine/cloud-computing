@@ -1,0 +1,9 @@
+{
+  "uid": "minicloud-health", "title": "System Health of realm_sv001", "schemaVersion": 39,
+  "version": 1, "refresh": "15s", "time": {"from": "now-30m", "to": "now"},
+  "panels": [
+    {"id": 1, "type": "timeseries", "title": "CPU Usage (%)", "datasource": {"type": "prometheus", "uid": "prometheus"}, "gridPos": {"x": 0, "y": 0, "w": 12, "h": 8}, "fieldConfig": {"defaults": {"unit": "percent"}}, "targets": [{"refId": "A", "expr": "100 * (1 - avg(rate(node_cpu_seconds_total{mode=\"idle\"}[5m])))"}]},
+    {"id": 2, "type": "timeseries", "title": "Memory Usage", "datasource": {"type": "prometheus", "uid": "prometheus"}, "gridPos": {"x": 12, "y": 0, "w": 12, "h": 8}, "fieldConfig": {"defaults": {"unit": "bytes"}}, "targets": [{"refId": "A", "expr": "node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes"}]},
+    {"id": 3, "type": "timeseries", "title": "Network Traffic", "datasource": {"type": "prometheus", "uid": "prometheus"}, "gridPos": {"x": 0, "y": 8, "w": 24, "h": 8}, "fieldConfig": {"defaults": {"unit": "Bps"}}, "targets": [{"refId": "A", "expr": "rate(node_network_receive_bytes_total{device!=\"lo\"}[5m])", "legendFormat": "receive {{device}}"}, {"refId": "B", "expr": "rate(node_network_transmit_bytes_total{device!=\"lo\"}[5m])", "legendFormat": "transmit {{device}}"}]}
+  ]
+}

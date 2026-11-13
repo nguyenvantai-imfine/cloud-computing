@@ -10,6 +10,8 @@ relational-database-server/data/*
 __pycache__/
 *.py[cod]
 .env
+authentication-identity-server/backup-before-persistence/
+artifacts/
 .DS_Store
 Thumbs.db
 
