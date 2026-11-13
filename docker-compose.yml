@@ -1,6 +1,10 @@
 networks:
   cloud-net:
     name: cloud-net
+    ipam:
+      config:
+        - subnet: 10.10.10.0/24
+          ip_range: 10.10.10.128/25
 
 volumes:
   db-data:
@@ -14,6 +18,7 @@ services:
     hostname: web-frontend-server1
     networks:
       cloud-net:
+        ipv4_address: 10.10.10.10
         aliases:
           - web-frontend-server1
     ports: ["8080:80"]
@@ -42,7 +47,9 @@ services:
     build: ./application-backend-server
     image: nguyenvantai1702/myminicloud-app:dev
     container_name: application-backend-server
-    networks: [cloud-net]
+    networks:
+      cloud-net:
+        ipv4_address: 10.10.10.20
     ports: ["8085:8081"]
     environment:
       OIDC_ISSUER: "http://localhost:8081/realms/realm_sv001"
@@ -72,8 +79,12 @@ services:
       KC_BOOTSTRAP_ADMIN_PASSWORD: admin
       KC_HOSTNAME_STRICT: "false"
       KC_HTTP_ENABLED: "true"
+      KC_HTTP_RELATIVE_PATH: "/auth"
+      KC_PROXY_HEADERS: "xforwarded"
     ports: ["8081:8080"]
-    networks: [cloud-net]
+    networks:
+      cloud-net:
+        ipv4_address: 10.10.10.40
     restart: unless-stopped
 
   object-storage-server:
@@ -87,7 +98,9 @@ services:
     volumes:
       - ./object-storage-server/data:/data
     ports: ["9000:9000", "9001:9001"]
-    networks: [cloud-net]
+    networks:
+      cloud-net:
+        ipv4_address: 10.10.10.30
     restart: unless-stopped
 
   internal-dns-server:
@@ -99,7 +112,9 @@ services:
       - ./internal-dns-server/named.conf.options:/etc/bind/named.conf.options:ro
       - ./internal-dns-server/named.conf.local:/etc/bind/named.conf.local:ro
       - ./internal-dns-server/db.cloud.local:/etc/bind/db.cloud.local:ro
-    networks: [cloud-net]
+    networks:
+      cloud-net:
+        ipv4_address: 10.10.10.53
     restart: unless-stopped
 
   monitoring-node-exporter-server:
