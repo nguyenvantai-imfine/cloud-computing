@@ -43,6 +43,13 @@ services:
     networks: [cloud-net]
     restart: unless-stopped
 
+  web-nginx-exporter2:
+    image: nginx/nginx-prometheus-exporter:1.5.1
+    command:
+      - --nginx.scrape-uri=http://web-frontend-server2:8081/stub_status
+    networks: [cloud-net]
+    restart: unless-stopped
+
   application-backend-server:
     build: ./application-backend-server
     image: nguyenvantai1702/myminicloud-app:dev
@@ -53,7 +60,7 @@ services:
       #   ipv4_address: 10.10.10.20
     ports: ["8085:8081"]
     environment:
-      OIDC_ISSUER: "${OIDC_ISSUER:-http://localhost/auth/realms/realm_sv001}"
+      OIDC_ISSUER: "${OIDC_ISSUER:-http://localhost:8081/auth/realms/realm_sv001}"
       OIDC_JWKS_URL: "http://authentication-identity-server:8080/auth/realms/realm_sv001/protocol/openid-connect/certs"
       OIDC_AUDIENCE: "account"
     restart: unless-stopped

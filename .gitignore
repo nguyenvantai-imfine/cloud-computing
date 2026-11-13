@@ -15,3 +15,5 @@ Thumbs.db
 
 # MinIO persistent data
 object-storage-server/data/
+
+/api-gateway-proxy-server/certs/
