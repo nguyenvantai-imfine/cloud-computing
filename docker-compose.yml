@@ -1,6 +1,7 @@
 networks:
   cloud-net:
     name: cloud-net
+    external: true
     ipam:
       config:
         - subnet: 10.10.10.0/24

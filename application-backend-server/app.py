@@ -4,9 +4,9 @@ from jose import jwt
 import pymysql
 import json
 
-ISSUER   = os.getenv("OIDC_ISSUER",   "http://authentication-identity-server:8080/realms/master")
-AUDIENCE = os.getenv("OIDC_AUDIENCE", "myapp")
-JWKS_URL = f"{ISSUER}/protocol/openid-connect/certs"
+ISSUER   = os.getenv("OIDC_ISSUER", "http://localhost:8081/realms/realm_sv001")
+AUDIENCE = os.getenv("OIDC_AUDIENCE", "account")
+JWKS_URL = os.getenv("OIDC_JWKS_URL", "http://authentication-identity-server:8080/realms/realm_sv001/protocol/openid-connect/certs")
 
 _JWKS = None; _TS = 0
 def get_jwks():
