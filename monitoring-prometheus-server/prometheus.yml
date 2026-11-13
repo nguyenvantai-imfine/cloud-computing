@@ -9,4 +9,9 @@ scrape_configs:
   - job_name: "web"
     metrics_path: /metrics
     static_configs:
-      - targets: ["web-frontend-server:80"]
+      - targets: ["web-nginx-exporter:9113"]
+        labels:
+          frontend: "web1"
+      - targets: ["web-nginx-exporter2:9113"]
+        labels:
+          frontend: "web2"

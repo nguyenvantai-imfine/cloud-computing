@@ -43,6 +43,13 @@ services:
     networks: [cloud-net]
     restart: unless-stopped
 
+  web-nginx-exporter2:
+    image: nginx/nginx-prometheus-exporter:1.5.1
+    command:
+      - --nginx.scrape-uri=http://web-frontend-server2:8081/stub_status
+    networks: [cloud-net]
+    restart: unless-stopped
+
   application-backend-server:
     build: ./application-backend-server
     image: nguyenvantai1702/myminicloud-app:dev
