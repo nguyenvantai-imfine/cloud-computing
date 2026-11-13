@@ -8,5 +8,15 @@
   { "id": 2, "name": "Trần Thị B", "major": "Khoa học máy tính", "gpa": 3.8 },
   { "id": 3, "name": "Lê Văn C", "major": "An toàn thông tin", "gpa": 3.2 },
   { "id": 4, "name": "Phạm Thị D", "major": "Hệ thống thông tin", "gpa": 3.5 },
-  { "id": 5, "name": "Hoàng Văn E", "major": "Kỹ thuật phần mềm", "gpa": 3.9 }
+  { "id": 5, "name": "Hoàng Văn E", "major": "Kỹ thuật phần mềm", "gpa": 3.9 },
+  {
+    "id": 6,
+    "name": "Nguyễn Thị F",
+    "major": "Công nghệ phần mềm",
+    "gpa": 3.4
+  },
+  { "id": 7, "name": "Trần Văn G", "major": "Khoa học dữ liệu", "gpa": 3.7 },
+  { "id": 8, "name": "Lê Thị H", "major": "Trí tuệ nhân tạo", "gpa": 3.1 },
+  { "id": 9, "name": "Phạm Văn I", "major": "Mạng máy tính", "gpa": 3.3 },
+  { "id": 10, "name": "Hoàng Thị J", "major": "Điện tử viễn thông", "gpa": 3.0 }
 ]

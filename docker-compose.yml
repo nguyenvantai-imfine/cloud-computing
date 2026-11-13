@@ -49,8 +49,9 @@ services:
     image: nguyenvantai1702/myminicloud-app:dev
     container_name: application-backend-server
     networks:
-      cloud-net:
-        ipv4_address: 10.10.10.20
+      [cloud-net]
+      # cloud-net:
+      #   ipv4_address: 10.10.10.20
     ports: ["8085:8081"]
     environment:
       OIDC_ISSUER: "http://localhost:8081/realms/realm_sv001"
