@@ -1,2 +1,269 @@
-<h1>MyMiniCloud Blog</h1>
-<a href="/">Back</a>
+<!doctype html>
+<html lang="vi" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MiniCloud Blog · Chuyên Trang Kỹ Thuật (__SERVER_ID__)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-cyan-500/20 selection:text-cyan-300 transition-colors duration-200">
+
+  <!-- TOP NAVBAR -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 gap-8">
+        <a href="/" class="flex items-center gap-2.5 text-left group rounded-lg p-1">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white shadow-sm shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">
+              Mini<span class="text-cyan-600 dark:text-cyan-400">Cloud</span>
+            </span>
+            <span class="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
+              ● __SERVER_ID__
+            </span>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600 dark:text-slate-300">
+          <a href="/" class="transition-colors hover:text-slate-900 dark:hover:text-white pb-0.5">Trang chủ</a>
+          <a href="/blog/" class="transition-colors pb-0.5 text-cyan-600 dark:text-cyan-400 font-semibold border-b-2 border-cyan-500 flex items-center gap-1.5">
+            <span>📖 Blog kỹ thuật</span>
+          </a>
+          <a href="/blog/blog1.html" class="transition-colors hover:text-slate-900 dark:hover:text-white pb-0.5">Bài viết 1</a>
+          <a href="/blog/blog2.html" class="transition-colors hover:text-slate-900 dark:hover:text-white pb-0.5">Bài viết 2</a>
+          <a href="/blog/blog3.html" class="transition-colors hover:text-slate-900 dark:hover:text-white pb-0.5">Bài viết 3</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <button onclick="document.documentElement.classList.toggle('dark')" class="p-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
+            ☀/☾
+          </button>
+          <a href="/" class="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 dark:bg-cyan-500 dark:hover:bg-cyan-400 dark:text-slate-950 rounded-lg shadow-sm">
+            ← Về Trang chính
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN BLOG LIST VIEW -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    
+    <!-- Spotlight Group Banner -->
+    <div class="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-950 text-white border border-slate-800 shadow-xl flex flex-col md:flex-row items-center gap-6">
+      <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white font-extrabold text-2xl border-2 border-cyan-400/50 shadow-md shrink-0">
+        MC
+      </div>
+      
+      <div class="space-y-2 flex-1 text-center md:text-left">
+        <div class="inline-flex items-center gap-2 text-xs font-semibold text-cyan-400 uppercase tracking-wider">
+          <span>✦ Không Gian Nghiên Cứu &amp; Chia Sẻ Kỹ Thuật · Nginx Alias (/blog/)</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">
+          Nhóm MiniCloud · Chuyên Trang Blog Công Nghệ
+        </h1>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl">
+          Không gian tổng hợp các bài viết nghiên cứu của nhóm về kiến trúc hệ thống đám mây phân tán (9 containers), thiết kế API dữ liệu sinh viên, DevOps với Docker và kinh nghiệm học tập công nghệ thông tin.
+        </p>
+      </div>
+
+      <a href="/" class="px-4 py-2.5 text-xs font-semibold text-slate-950 bg-cyan-400 hover:bg-cyan-300 rounded-xl transition-all shadow-md flex items-center gap-2 shrink-0 whitespace-nowrap">
+        <span>← Trang chủ MiniCloud</span>
+      </a>
+    </div>
+
+    <!-- Filter Bar & Search -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div class="flex flex-wrap items-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">
+        <button onclick="filterCategory('all')" data-cat="all" class="cat-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm">
+          Tất cả chủ đề (3)
+        </button>
+        <button onclick="filterCategory('API Design')" data-cat="API Design" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+          API Design
+        </button>
+        <button onclick="filterCategory('Cloud Architecture')" data-cat="Cloud Architecture" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+          Cloud Architecture
+        </button>
+        <button onclick="filterCategory('Học tập & Đồ án')" data-cat="Học tập & Đồ án" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+          Học tập &amp; Đồ án
+        </button>
+      </div>
+
+      <div class="relative min-w-[260px]">
+        <input
+          id="blog-search"
+          oninput="applyFilter()"
+          type="text"
+          placeholder="Tìm bài viết, tags (blog1, docker, api...)"
+          class="w-full px-4 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-cyan-500"
+        />
+      </div>
+    </div>
+
+    <!-- Blog Cards Grid (3 Bài Viết HTML theo Yêu cầu mở rộng 1) -->
+    <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Bài 1: blog1.html -->
+      <article data-category="API Design" class="blog-card group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden hover:shadow-xl hover:border-cyan-500/50 transition-all flex flex-col justify-between">
+        <div>
+          <a href="/blog/blog1.html" class="block h-48 overflow-hidden bg-slate-950">
+            <img src="/assets/images/blog_student_api_cover_1794421033024.jpg" alt="Bài 1: Thiết kế API Sinh viên" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </a>
+          <div class="p-6 space-y-3">
+            <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-medium">
+              <span class="text-cyan-600 dark:text-cyan-400 font-semibold">API Design</span>
+              <span>·</span>
+              <span>6 phút đọc</span>
+              <span>·</span>
+              <span>2026-10-24</span>
+            </div>
+            <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+              <a href="/blog/blog1.html">Kiến Trúc &amp; Thiết Kế API Sinh Viên Chuẩn RESTful Trên MiniCloud</a>
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Cách tổ chức cấu trúc tài nguyên, phân trang, lọc query params, định tuyến qua Nginx Reverse Proxy (<code>/student/</code>) và bảo mật OAuth/Token cho API quản lý sinh viên.
+            </p>
+            <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[11px] text-slate-500 dark:text-slate-400">
+              <span>#REST_API</span>
+              <span>#Backend</span>
+              <span>#SinhVien</span>
+              <span>#Flask</span>
+            </div>
+          </div>
+        </div>
+        <div class="px-6 py-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs text-slate-500">
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white text-[10px] font-bold">MC</div>
+            <span class="font-medium text-slate-700 dark:text-slate-300">Nhóm MiniCloud</span>
+          </div>
+          <a href="/blog/blog1.html" class="font-semibold text-cyan-600 dark:text-cyan-400 hover:underline">Đọc chi tiết →</a>
+        </div>
+      </article>
+
+      <!-- Bài 2: blog2.html -->
+      <article data-category="Cloud Architecture" class="blog-card group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden hover:shadow-xl hover:border-cyan-500/50 transition-all flex flex-col justify-between">
+        <div>
+          <a href="/blog/blog2.html" class="block h-48 overflow-hidden bg-slate-950">
+            <img src="/assets/images/minucloud_hero_network_1794421019529.jpg" alt="Bài 2: Xây dựng MiniCloud với Docker" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </a>
+          <div class="p-6 space-y-3">
+            <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-medium">
+              <span class="text-cyan-600 dark:text-cyan-400 font-semibold">Cloud Architecture</span>
+              <span>·</span>
+              <span>9 phút đọc</span>
+              <span>·</span>
+              <span>2026-10-18</span>
+            </div>
+            <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+              <a href="/blog/blog2.html">Xây Dựng Hạ Tầng MiniCloud: Tối Ưu Hóa Với Docker, Nginx Reverse Proxy &amp; Bind9 DNS</a>
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Hành trình xây dựng cụm 9 máy chủ container phục vụ lưu trữ MinIO S3, hosting đồ án sinh viên, cân bằng tải Round Robin và giám sát Prometheus - Grafana.
+            </p>
+            <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[11px] text-slate-500 dark:text-slate-400">
+              <span>#Docker</span>
+              <span>#DevOps</span>
+              <span>#NginxProxy</span>
+              <span>#Bind9DNS</span>
+            </div>
+          </div>
+        </div>
+        <div class="px-6 py-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs text-slate-500">
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white text-[10px] font-bold">MC</div>
+            <span class="font-medium text-slate-700 dark:text-slate-300">Nhóm MiniCloud</span>
+          </div>
+          <a href="/blog/blog2.html" class="font-semibold text-cyan-600 dark:text-cyan-400 hover:underline">Đọc chi tiết →</a>
+        </div>
+      </article>
+
+      <!-- Bài 3: blog3.html -->
+      <article data-category="Học tập & Đồ án" class="blog-card group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden hover:shadow-xl hover:border-cyan-500/50 transition-all flex flex-col justify-between">
+        <div>
+          <a href="/blog/blog3.html" class="block h-48 overflow-hidden bg-slate-950">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" alt="Bài 3: Kinh nghiệm học CNTT" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </a>
+          <div class="p-6 space-y-3">
+            <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-medium">
+              <span class="text-cyan-600 dark:text-cyan-400 font-semibold">Học tập &amp; Đồ án</span>
+              <span>·</span>
+              <span>5 phút đọc</span>
+              <span>·</span>
+              <span>2026-09-29</span>
+            </div>
+            <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+              <a href="/blog/blog3.html">Kinh Nghiệm Học Ngành CNTT, Làm Đồ Án Thực Chiến &amp; Duy Trì GPA &gt; 3.8</a>
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Phương pháp cân bằng giữa lý thuyết giải thuật tại trường đại học và thực hành công nghệ mới để chuẩn bị hồ sơ ứng tuyển vững chắc.
+            </p>
+            <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[11px] text-slate-500 dark:text-slate-400">
+              <span>#SinhVien</span>
+              <span>#KinhNghiem</span>
+              <span>#HocTap</span>
+              <span>#Career</span>
+            </div>
+          </div>
+        </div>
+        <div class="px-6 py-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs text-slate-500">
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white text-[10px] font-bold">MC</div>
+            <span class="font-medium text-slate-700 dark:text-slate-300">Nhóm MiniCloud</span>
+          </div>
+          <a href="/blog/blog3.html" class="font-semibold text-cyan-600 dark:text-cyan-400 hover:underline">Đọc chi tiết →</a>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+      <div>© 2026 MiniCloud Blog. Thực hiện bởi Nhóm Đồ Án Điện Toán Đám Mây.</div>
+      <div>Phục vụ bởi Node: <strong class="text-cyan-400 font-mono">__SERVER_ID__</strong></div>
+    </div>
+  </footer>
+
+  <script>
+    let selectedCat = 'all';
+    function filterCategory(cat) {
+      selectedCat = cat;
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        if (btn.dataset.cat === cat) {
+          btn.className = 'cat-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm';
+        } else {
+          btn.className = 'cat-btn px-3 py-1.5 text-xs font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white';
+        }
+      });
+      applyFilter();
+    }
+    function applyFilter() {
+      const q = (document.getElementById('blog-search').value || '').toLowerCase();
+      document.querySelectorAll('.blog-card').forEach(card => {
+        const matchCat = selectedCat === 'all' || card.dataset.category === selectedCat;
+        const matchText = !q || card.innerText.toLowerCase().includes(q);
+        card.style.display = (matchCat && matchText) ? 'flex' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
