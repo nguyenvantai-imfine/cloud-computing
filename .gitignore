@@ -1,0 +1,14 @@
+# Bỏ qua toàn bộ dữ liệu sinh ra bên trong MinIO Object Storage
+object-storage-server/data/*
+!object-storage-server/data/.gitkeep
+
+# Bỏ qua dữ liệu database nếu có mount volume
+relational-database-server/data/*
+!relational-database-server/data/.gitkeep
+
+# Bỏ qua file môi trường, cache Python và file hệ thống
+__pycache__/
+*.py[cod]
+.env
+.DS_Store
+Thumbs.db
