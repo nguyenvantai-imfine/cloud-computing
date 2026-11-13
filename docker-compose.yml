@@ -1,7 +1,6 @@
 networks:
   cloud-net:
     name: cloud-net
-    external: true
     ipam:
       config:
         - subnet: 10.10.10.0/24
@@ -54,8 +53,8 @@ services:
       #   ipv4_address: 10.10.10.20
     ports: ["8085:8081"]
     environment:
-      OIDC_ISSUER: "http://localhost:8081/realms/realm_sv001"
-      OIDC_JWKS_URL: "http://authentication-identity-server:8080/realms/realm_sv001/protocol/openid-connect/certs"
+      OIDC_ISSUER: "${OIDC_ISSUER:-http://localhost/auth/realms/realm_sv001}"
+      OIDC_JWKS_URL: "http://authentication-identity-server:8080/auth/realms/realm_sv001/protocol/openid-connect/certs"
       OIDC_AUDIENCE: "account"
     restart: unless-stopped
 
