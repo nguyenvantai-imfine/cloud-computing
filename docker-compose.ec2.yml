@@ -1,0 +1,22 @@
+services:
+  object-storage-server:
+    image: quyn1305/myminicloud-minio:2025-10-15
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:?Set MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?Set MINIO_ROOT_PASSWORD}
+
+  application-backend-server:
+    environment:
+      OIDC_ISSUER: https://56.10.26.60/auth/realms/realm_sv001
+
+  authentication-identity-server:
+    volumes:
+      - keycloak-data:/opt/keycloak/data
+  api-gateway-proxy-server:
+    ports:
+      - "443:443"
+    volumes:
+      - ./api-gateway-proxy-server/nginx.ec2.conf:/etc/nginx/nginx.conf:ro
+      - ./api-gateway-proxy-server/certs:/etc/nginx/certs:ro
+volumes:
+  keycloak-data:

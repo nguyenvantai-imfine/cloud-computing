@@ -1,0 +1,11 @@
+services:
+  authentication-identity-server:
+    volumes:
+      - keycloak-data-local:/opt/keycloak/data
+
+  relational-database-server:
+    ports: !override
+      - "3307:3306"
+
+volumes:
+  keycloak-data-local:
